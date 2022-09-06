@@ -883,7 +883,10 @@ calls each respective submode's `syntax-propertize-function'."
                     (save-restriction
                       (when mmm-current-overlay
                         (narrow-to-region (overlay-start mmm-current-overlay)
-                                          (overlay-end mmm-current-overlay)))
+                                          (overlay-end mmm-current-overlay))
+                        (put-text-property
+                         (point-min) (point-max)
+                         'syntax-table (syntax-table)))
                       (cond
                        (func
                         (funcall func beg end))
